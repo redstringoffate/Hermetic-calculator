@@ -10,7 +10,7 @@ def calculate_all_lots(positions, sect):
     asc = positions["Asc"]
     results = {}
 
-    # 1️⃣ Base lots
+    # Base
     results["Fortune"] = hermetic_lot(
         asc, positions["Moon"], positions["Sun"], sect
     )
@@ -18,7 +18,7 @@ def calculate_all_lots(positions, sect):
         asc, positions["Sun"], positions["Moon"], sect
     )
 
-    # 2️⃣ Derived lots
+    # Derived (corrected)
     results["Eros"] = hermetic_lot(
         asc, positions["Venus"], results["Spirit"], sect
     )
@@ -32,7 +32,9 @@ def calculate_all_lots(positions, sect):
         asc, results["Fortune"], positions["Mercury"], sect
     )
     results["Nemesis"] = hermetic_lot(
-        asc, positions["Saturn"], results["Fortune"], sect
+        asc, results["Spirit"], positions["Saturn"], sect
     )
 
     return results
+
+
